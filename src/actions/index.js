@@ -1,9 +1,11 @@
 import axios from 'axios';
 import Users from "../reducers/users_reducer";
 import Topics from "../reducers/topic_reducer";
+import Subforums from "../reducers/subforum_reducer";
 
 export const FETCH_FORUM = "FETCH_FORUM";
 export const FETCH_TOPIC = "FETCH_TOPIC";
+export const FETCH_SUBFORUM = "FETCH_SUBFORUM";
 export const TOPIC_SELECTED = 'TOPIC_SELECTED';
 export const SUBFORUM_SELECTED = 'SUBFORUM_SELECTED';
 export const USER_SELECTED = 'USER_SELECTED';
@@ -32,6 +34,15 @@ export function loadTopic(topicId){
     }
 }
 
+export function loadSubforum(subforumId){
+    var subforum = Subforums().find(x => x.id === subforumId);
+
+    return {
+        type: FETCH_SUBFORUM,
+        payload: subforum
+    };
+}
+
 export function selectSubforum(subforum) {
     console.log("Subforum was selected", subforum.content);
     return {
@@ -47,7 +58,7 @@ export function selectTopic(topic){
     }
 }
 
-export function selectUser(userId){
+export function loadUser(userId){
     console.log("User was selected", userId);
     var user = Users().find(x => x.id === userId);
     return {

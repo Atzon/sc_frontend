@@ -6,13 +6,21 @@ import {Button} from "reactstrap";
 
 class Topic extends Component{
 
-    componentWillMount() {
+
+    componentDidMount() {
         this.props.loadTopic(parseInt(this.props.match.params.topicId));
     }
 
-
-
     render(){
+
+        if(!this.props.topic){
+
+            return(
+                <div>
+                    Blablah
+                </div>);
+        }
+
         return(
             <div>
                 <ul className="list-group col-sm-4">

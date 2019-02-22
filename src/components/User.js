@@ -1,8 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { loadUser } from "../actions";
 
 class User extends Component{
+
+    componentDidMount() {
+        this.props.loadUser(parseInt(this.props.match.params.userId));
+    }
+
     render(){
+        if(!this.props.user){
+
+            return(
+                <div>
+                    Blablah
+                </div>);
+        }
+
 
         return(
             <div>
@@ -23,4 +37,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps)(User)
+export default connect(mapStateToProps, { loadUser })(User)

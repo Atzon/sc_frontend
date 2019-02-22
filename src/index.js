@@ -8,7 +8,7 @@ import promise from 'redux-promise';
 import Routes from "./routes";
 //import * as serviceWorker from './serviceWorker';
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 
 ReactDOM.render(

@@ -1,21 +1,38 @@
-import React, { Component } from 'react';
-import { connect} from 'react-redux';
-import {Route} from "react-router-dom";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {loadSubforum, loadUser, loadTopic } from "../actions";
+import {Link} from "react-router-dom";
 
 class Subforum extends Component{
+
+    componentDidMount() {
+        this.props.loadSubforum(parseInt(this.props.match.params.subforumId));
+    }
+
     render(){
 
-        return(
-            <div>
-                Subforum site
-                <h3>
-                    {this.props.subforum.content}
-                    <br/>
-                    {this.props.match.params.subforumId}
-                </h3>
+        if(!this.props.subforum){
+            return(
+                <div>
+                    Blablah
+                </div>);
+        }
 
-            </div>
-        );
+        return this.props.subforum.topics.map((topic) => {
+            return (
+                <li key={topic.id}
+                    className="list-group-item">
+                    <Link onClick={() => this.props.loadTopic(topic.id)}
+                          to={`topic/${topic.id}`}>
+                        {topic.title}</Link>
+                    <br/>
+                    <Link onClick={() => this.props.loadUser(topic.authorId)}
+                          to={`user/${topic.authorId}`}>
+                        Author {topic.authorId}</Link>
+                </li>
+            );
+        });
+
     }
 }
 
@@ -25,4 +42,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps)(Subforum)
+export default connect(mapStateToProps, { loadSubforum, loadUser, loadTopic })(Subforum)

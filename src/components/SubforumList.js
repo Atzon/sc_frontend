@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {selectSubforum, selectTopic, selectUser} from "../actions";
+import {loadSubforum, loadTopic, loadUser} from "../actions";
 import {Link} from "react-router-dom";
 import { Button } from 'reactstrap';
 
@@ -12,11 +12,11 @@ export class SubforumList extends Component {
            return (
                <li key={topic.id}
                    className="list-group-item">
-                   <Link onClick={() => this.props.selectTopic(topic)}
+                   <Link onClick={() => this.props.loadTopic(topic.id)}
                          to={`${this.props.match.url}/topic/${topic.id}`}>
                        {topic.title}</Link>
                    <br/>
-                   <Link onClick={() => this.props.selectUser(topic.authorId)}
+                   <Link onClick={() => this.props.loadUser(topic.authorId)}
                          to={`${this.props.match.url}/user/${topic.authorId}`}>
                        Author {topic.authorId}</Link>
                </li>
@@ -30,7 +30,7 @@ export class SubforumList extends Component {
                 <ul className="list-group col-sm-4">
                     { this.props.subforums.map((subforum) =>
                         <li key={subforum.id}
-                            onClick={() => this.props.selectSubforum(subforum)}
+                            onClick={() => this.props.loadSubforum(subforum.id)}
                             className="list-group-item">
                             <Link to={`${this.props.match.url}/${subforum.id}`}>{subforum.content}</Link>
                             <Button color="primary" href={`${this.props.match.url}/new`} size="sm">Add new subforum</Button>
@@ -95,7 +95,7 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, {selectSubforum, selectTopic, selectUser})(SubforumList);
+export default connect(mapStateToProps, {loadSubforum, loadTopic, loadUser})(SubforumList);
 
 
 

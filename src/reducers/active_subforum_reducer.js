@@ -1,6 +1,10 @@
+import { FETCH_SUBFORUM, SUBFORUM_SELECTED } from "../actions";
+
 export default function(state = null, action){
     switch(action.type){
-        case 'SUBFORUM_SELECTED':
+        case FETCH_SUBFORUM:
+            return action.payload;
+        case SUBFORUM_SELECTED:
             return action.payload;
     }
 
