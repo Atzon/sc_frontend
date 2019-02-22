@@ -3,9 +3,11 @@ import Users from "../reducers/users_reducer";
 import Topics from "../reducers/topic_reducer";
 
 export const FETCH_FORUM = "FETCH_FORUM";
+export const FETCH_TOPIC = "FETCH_TOPIC";
 export const TOPIC_SELECTED = 'TOPIC_SELECTED';
 export const SUBFORUM_SELECTED = 'SUBFORUM_SELECTED';
 export const USER_SELECTED = 'USER_SELECTED';
+export const CREATE_SUBFORUM = 'CREATE_SUBFORUM';
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
 const FORUM_ID = '?key=fhdbfh23232d2j23';
@@ -18,6 +20,16 @@ export function fetchForum(){
         type: FETCH_FORUM,
         payload: request
     };
+}
+
+export function loadTopic(topicId){
+
+    var topic = Topics().find(x => x.id === topicId);
+
+    return {
+        type: FETCH_TOPIC,
+        payload: topic
+    }
 }
 
 export function selectSubforum(subforum) {
@@ -42,4 +54,15 @@ export function selectUser(userId){
         type: USER_SELECTED,
         payload: user
     }
+}
+
+export function createSubforum(prop) {
+    //const request = axios.post("");
+    var request = {title: "ok", content: "content"};
+
+    return{
+      type: CREATE_SUBFORUM,
+      payload: request
+    };
+    
 }

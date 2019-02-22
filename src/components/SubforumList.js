@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {selectSubforum, selectTopic, selectUser} from "../actions";
 import {Link} from "react-router-dom";
+import { Button } from 'reactstrap';
 
 
 export class SubforumList extends Component {
@@ -12,11 +13,11 @@ export class SubforumList extends Component {
                <li key={topic.id}
                    className="list-group-item">
                    <Link onClick={() => this.props.selectTopic(topic)}
-                         to={`${this.props.match.url}topic/${topic.id}`}>
+                         to={`${this.props.match.url}/topic/${topic.id}`}>
                        {topic.title}</Link>
                    <br/>
                    <Link onClick={() => this.props.selectUser(topic.authorId)}
-                         to={`${this.props.match.url}user/${topic.authorId}`}>
+                         to={`${this.props.match.url}/user/${topic.authorId}`}>
                        Author {topic.authorId}</Link>
                </li>
         );
@@ -31,7 +32,8 @@ export class SubforumList extends Component {
                         <li key={subforum.id}
                             onClick={() => this.props.selectSubforum(subforum)}
                             className="list-group-item">
-                            <Link to={`${this.props.match.url}${subforum.id}`}>{subforum.content}</Link>
+                            <Link to={`${this.props.match.url}/${subforum.id}`}>{subforum.content}</Link>
+                            <Button color="primary" href={`${this.props.match.url}/new`} size="sm">Add new subforum</Button>
                             <ul>
                                 {this.renderTopics(subforum)}
                             </ul>
