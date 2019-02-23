@@ -71,6 +71,7 @@ export function createSubforum(prop) {
     //const request = axios.post("");
     var request = {title: "ok", content: "content"};
 
+    console.log(prop);
     return{
       type: CREATE_SUBFORUM,
       payload: request
