@@ -2,46 +2,74 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {loadSubforum, loadTopic, loadUser} from "../actions";
 import {Link} from "react-router-dom";
-import { Button } from 'reactstrap';
+import {Col, Container, Row} from "react-grid-system";
 
+const marginRowTop = {
+    marginTop: '50px',
+    backgroundColor: '#BCC9D3'
+};
 
+const marginRowBottom = {
+    marginBottom: '50px',
+}
+
+const displayFlexDisable ={
+    display: 'yes'
+}
+const backgroundColor ={
+    backgroundColor: '#E8E8E8'
+}
 export class SubforumList extends Component {
 
     renderTopics(subforum){
-        return subforum.topics.map((topic) => {
-           return (
-               <li key={topic.id}
-                   className="list-group-item">
-                   <Link onClick={() => this.props.loadTopic(topic.id)}
-                         to={`${this.props.match.url}/topic/${topic.id}`}>
-                       {topic.title}</Link>
-                   <br/>
-                   <Link onClick={() => this.props.loadUser(topic.authorId)}
-                         to={`${this.props.match.url}/user/${topic.authorId}`}>
-                       Author {topic.authorId}</Link>
-               </li>
+        return(
+            <Container style={marginRowBottom}>
+                { subforum.topics.map((topic) =>
+                    <Row key={topic.id} style={ backgroundColor }
+                         className="list-group-item">
+                        <Col md={8}>
+                            <Link onClick={() => this.props.loadTopic(topic.id)}
+                                    to={`${this.props.match.url}/topic/${topic.id}`}>
+                                {topic.title}
+                            </Link>
+                        </Col>
+                        <Col>
+                            <Link onClick={() => this.props.loadUser(topic.authorId)}
+                                  to={`${this.props.match.url}/user/${topic.authorId}`}>
+                                Author {topic.authorId}
+                            </Link>
+                        </Col>
+                    </Row>
+                    )}
+                </Container>
         );
-        });
+
     }
 
     render(){
         return (
             <div>
-                <ul className="list-group col-sm-4">
+                <Container>
                     { this.props.subforums.map((subforum) =>
-                        <li key={subforum.id}
-                            onClick={() => this.props.loadSubforum(subforum.id)}
-                            className="list-group-item">
-                            <Link to={`${this.props.match.url}/${subforum.id}`}>{subforum.content}</Link>
-                            <Button color="primary" href={`${this.props.match.url}/new`} size="sm">Add new subforum</Button>
-                            <ul>
+                        <div>
+                            <Row key={subforum.id} style={marginRowTop}
+                                 onClick={() => this.props.loadSubforum(subforum.id)}
+                                 className="list-group-item">
+                                <Col md={8} xs={8}>
+                                    <Link to={`${this.props.match.url}/${subforum.id}`}>{subforum.content}</Link>
+                                </Col>
+                                <Col>
+                                    <Link to={`${this.props.match.url}/new`} className="btn btn-primary">Add new subforum</Link>
+                                </Col>
+
+                            </Row>
+                            <Row style={displayFlexDisable}>
                                 {this.renderTopics(subforum)}
-                            </ul>
-                        </li>
+                            </Row>
+                        </div>
                     )
                     }
-                </ul>
-                <hr />
+                </Container>
             </div>
         )
     }
@@ -80,14 +108,7 @@ export class SubforumList extends Component {
 //
 // }
 
-const Test = ({ match }) => (
 
-    <div>
-        <h1>TEST</h1>
-        <h1>{match.params.subforumId}</h1>
-    </div>
-
-);
 
 function mapStateToProps(state){
     return{

@@ -14,6 +14,7 @@ class SubforumForm extends Component{
                 <Field name="title" type="text" component={renderField} label="Title" validate={[required]}/>
                 <Field name="authorId" type="text" component={renderField} label="AuthorId" validate={[required]}/>
 
+
                 <button type="submit">Submit</button>
             </form>
         );

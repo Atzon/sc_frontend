@@ -67,14 +67,22 @@ export function loadUser(userId){
     }
 }
 
-export function createSubforum(prop) {
-    //const request = axios.post("");
-    var request = {title: "ok", content: "content"};
 
-    console.log(prop);
+
+export function createSubforum(prop) {
+
+    var lastSubforum = 1;
+    if(Subforums().length !== 0){
+        lastSubforum = Subforums().reduce(function(prev, current) {
+            return (prev.id > current.id) ? prev : current
+        });
+    }
+
+    var newSubforum = { id: lastSubforum.id+1, topics: [], content: prop.title };
+
     return{
       type: CREATE_SUBFORUM,
-      payload: request
+      payload: newSubforum
     };
     
 }

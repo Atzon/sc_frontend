@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { loadTopic } from "../actions";
-import {Link} from "react-router-dom";
-import {Button} from "reactstrap";
+import {loadTopic} from "../actions";
 
 class Topic extends Component{
 
