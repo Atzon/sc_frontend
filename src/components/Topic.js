@@ -1,40 +1,75 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {loadTopic} from "../actions";
+import {addPost, loadTopic} from "../actions";
+import {Col, Container, Row} from "react-grid-system";
+import {marginRowTop} from "../utils";
+import {Editor} from 'react-draft-wysiwyg';
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import {Field, reduxForm} from "redux-form";
+import { EditorFieldComponent } from "./WYSWIGField";
+
+
+const authorColumn = {
+    borderRightColor: 'rgb(221,221,221)',
+    borderRightStyle: 'solid',
+    borderRightWidth: '1px'
+}
+
+const wyswigStyle = {
+    paddingTop: '10%',
+    marginBottom: '100px'
+}
+
 
 class Topic extends Component{
-
 
     componentDidMount() {
         this.props.loadTopic(parseInt(this.props.match.params.topicId));
     }
 
     render(){
+        const { handleSubmit } = this.props;
 
         if(!this.props.topic){
 
             return(
                 <div>
-                    Blablah
+                    <h3>Loading</h3>
                 </div>);
         }
 
         return(
             <div>
-                <ul className="list-group col-sm-4">
+                <Container>
+                    <Row style={marginRowTop} className="list-group-item">
+                        <Col>
+                            {this.props.topic.title}
+                        </Col>
+                    </Row>
                     { this.props.topic.posts.map((post) =>
-                        <li key={post.id}
-                            // onClick={() => this.props.selectSubforum(subforum)}
-                            className="list-group-item">
-                            {post.content}
-                            {/*<Link to={`${this.props.match.url}/${subforum.id}`}>{subforum.content}</Link>*/}
-                            {/*<Button color="primary" href={`${this.props.match.url}/new`} size="sm">Add new subforum</Button>*/}
-
-                        </li>
+                        <Row key={post.id} className="list-group-item">
+                            <Col md={2} style={authorColumn}>
+                                author
+                            </Col>
+                            <Col>
+                                {post.content}
+                            </Col>
+                        </Row>
                     )
                     }
-                </ul>
-                <hr />
+                    <Row style={wyswigStyle}>
+                        <form onSubmit={handleSubmit(this.props.addPost)}>
+
+                            <Field key="field"
+                                   name="editorText"
+                                   id="inputEditorText"
+                                   disabled={false}
+                                   placeholder="Type here" component={EditorFieldComponent} />
+
+                            <button type="submit">Add post</button>
+                        </form>
+                    </Row>
+                </Container>
             </div>
 
         );
@@ -47,4 +82,6 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, { loadTopic })(Topic)
+export default connect(mapStateToProps, { loadTopic, addPost })(
+    reduxForm({form: "AddPostForm"})(Topic));
+

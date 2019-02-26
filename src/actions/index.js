@@ -10,6 +10,7 @@ export const TOPIC_SELECTED = 'TOPIC_SELECTED';
 export const SUBFORUM_SELECTED = 'SUBFORUM_SELECTED';
 export const USER_SELECTED = 'USER_SELECTED';
 export const CREATE_SUBFORUM = 'CREATE_SUBFORUM';
+export const ADD_POST = 'ADD_POST';
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
 const FORUM_ID = '?key=fhdbfh23232d2j23';
@@ -27,6 +28,7 @@ export function fetchForum(){
 export function loadTopic(topicId){
 
     var topic = Topics().find(x => x.id === topicId);
+
 
     return {
         type: FETCH_TOPIC,
@@ -84,5 +86,14 @@ export function createSubforum(prop) {
       type: CREATE_SUBFORUM,
       payload: newSubforum
     };
-    
+}
+
+export function addPost(prop) {
+
+    console.log("prop", prop);
+
+    return{
+        type: ADD_POST,
+        payload: prop
+    };
 }

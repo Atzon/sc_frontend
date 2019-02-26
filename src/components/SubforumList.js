@@ -3,22 +3,8 @@ import {connect} from 'react-redux';
 import {loadSubforum, loadTopic, loadUser} from "../actions";
 import {Link} from "react-router-dom";
 import {Col, Container, Row} from "react-grid-system";
+import { marginRowBottom, marginRowTop, displayFlexDisable, backgroundColor } from "../utils";
 
-const marginRowTop = {
-    marginTop: '50px',
-    backgroundColor: '#BCC9D3'
-};
-
-const marginRowBottom = {
-    marginBottom: '50px',
-}
-
-const displayFlexDisable ={
-    display: 'yes'
-}
-const backgroundColor ={
-    backgroundColor: '#E8E8E8'
-}
 export class SubforumList extends Component {
 
     renderTopics(subforum){

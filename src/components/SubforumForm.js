@@ -22,7 +22,7 @@ class SubforumForm extends Component{
 }
 
 export default connect(null, { createSubforum })(
-    reduxForm({form: "Formularz1"})(SubforumForm));
+    reduxForm({form: "SubforumAddForm"})(SubforumForm));
 
 
 
