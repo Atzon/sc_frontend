@@ -1,4 +1,4 @@
-import {FETCH_TOPIC} from "../actions";
+import {ADD_POST, FETCH_TOPIC} from "../actions";
 
 var db = [
     {id: 1, subforumId: 1, title: "Tytul temat 1", authorId: 1, posts:[
@@ -42,7 +42,12 @@ export default function (state = db, action) {
             case FETCH_TOPIC:
                 console.log(action);
                 return action.payload;
-
+            case ADD_POST:
+                // console.log(action);
+                return state;
+                // return { ...state.map((topic) => topic.id === action.topic.id ? {
+                //     ...topic, posts: [...topic.posts, action.payload]
+                //     } : topic)};
         }
     }
     return state;

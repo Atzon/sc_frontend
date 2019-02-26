@@ -58,7 +58,8 @@ class Topic extends Component{
                     )
                     }
                     <Row style={wyswigStyle}>
-                        <form onSubmit={handleSubmit(this.props.addPost)}>
+                        <form onSubmit={handleSubmit(data =>
+                            this.props.addPost({...data, topic: this.props.topic}))}>
 
                             <Field key="field"
                                    name="editorText"
@@ -78,7 +79,8 @@ class Topic extends Component{
 
 function mapStateToProps(state){
     return{
-        topic: state.activeTopic
+        topic: state.activeTopic,
+        topics: state.topics
     };
 }
 

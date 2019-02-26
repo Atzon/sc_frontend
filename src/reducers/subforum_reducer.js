@@ -1,4 +1,4 @@
-import { CREATE_SUBFORUM } from "../actions";
+import {ADD_POST, CREATE_SUBFORUM} from "../actions";
 
 var db = [
     {id: 1, content: "Jakies 1", topics:

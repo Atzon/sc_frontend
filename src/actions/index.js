@@ -90,10 +90,14 @@ export function createSubforum(prop) {
 
 export function addPost(prop) {
 
-    console.log("prop", prop);
+    // console.log("prop", prop);
+
+    var newPost = {id:0, content: prop.editorText, authorId:0, date: 'datka'};
+
 
     return{
         type: ADD_POST,
-        payload: prop
+        payload: newPost,
+        topic: prop.topic
     };
 }
