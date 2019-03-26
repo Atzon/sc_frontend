@@ -6,7 +6,8 @@ import {marginRowTop} from "../utils";
 import {Editor} from 'react-draft-wysiwyg';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {Field, reduxForm} from "redux-form";
-import { EditorFieldComponent } from "./WYSWIGField";
+import {EditorFieldComponent} from "./WYSWIGField";
+import AntLayout from "./layout/ant_layout";
 
 
 const authorColumn = {
@@ -40,6 +41,7 @@ class Topic extends Component{
 
         return(
             <div>
+                <AntLayout>
                 <Container>
                     <Row style={marginRowTop} className="list-group-item">
                         <Col>
@@ -71,6 +73,7 @@ class Topic extends Component{
                         </form>
                     </Row>
                 </Container>
+                </AntLayout>
             </div>
 
         );

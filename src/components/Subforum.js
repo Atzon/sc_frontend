@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {loadSubforum, loadUser, loadTopic } from "../actions";
+import {loadSubforum, loadTopic, loadUser} from "../actions";
 import {Link} from "react-router-dom";
 import {Col, Container, Row} from "react-grid-system";
 import {backgroundColor, marginRowTop} from "../utils";
+import AntLayout from "./layout/ant_layout";
 
 class Subforum extends Component{
 
@@ -22,6 +23,7 @@ class Subforum extends Component{
 
         return (
             <div>
+                <AntLayout>
                 <Container>
                     <Row key={this.props.subforum.id} style={marginRowTop}
                          onClick={() => this.props.loadSubforum(this.props.subforum.id)}
@@ -49,6 +51,7 @@ class Subforum extends Component{
                         </Row>
                     )}
                 </Container>
+                </AntLayout>
             </div>
         );
 

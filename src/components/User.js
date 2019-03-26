@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { loadUser } from "../actions";
+import {loadUser} from "../actions";
+import AntLayout from "./layout/ant_layout";
 
 class User extends Component{
 
@@ -9,10 +10,13 @@ class User extends Component{
     }
 
     render(){
+
+
         if(!this.props.user){
 
             return(
                 <div>
+                    <AntLayout/>
                     Blablah
                 </div>);
         }
@@ -20,12 +24,13 @@ class User extends Component{
 
         return(
             <div>
-                <h3>
+                <AntLayout>
+                    <h3>
                     {this.props.user.id}
                     <br/>
                     {this.props.user.name}
-                </h3>
-
+                    </h3>
+                </AntLayout>
             </div>
         );
     }

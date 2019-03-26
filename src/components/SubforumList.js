@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {loadSubforum, loadTopic, loadUser} from "../actions";
 import {Link} from "react-router-dom";
 import {Col, Container, Row} from "react-grid-system";
-import { marginRowBottom, marginRowTop, displayFlexDisable, backgroundColor } from "../utils";
+import {backgroundColor, displayFlexDisable, marginRowBottom, marginRowTop} from "../utils";
+import AntLayout from "./layout/ant_layout";
 
 export class SubforumList extends Component {
 
@@ -35,6 +36,7 @@ export class SubforumList extends Component {
     render(){
         return (
             <div>
+                <AntLayout>
                 <Container>
                     { this.props.subforums.map((subforum) =>
                         <div>
@@ -56,6 +58,7 @@ export class SubforumList extends Component {
                     )
                     }
                 </Container>
+                </AntLayout>
             </div>
         )
     }
