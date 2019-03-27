@@ -11,6 +11,9 @@ export const SUBFORUM_SELECTED = 'SUBFORUM_SELECTED';
 export const USER_SELECTED = 'USER_SELECTED';
 export const CREATE_SUBFORUM = 'CREATE_SUBFORUM';
 export const ADD_POST = 'ADD_POST';
+export const ADD_SUBFORUM = 'ADD_SUBFORUM';
+export const LOGIN = 'LOGIN';
+
 
 const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
 const FORUM_ID = '?key=fhdbfh23232d2j23';
@@ -44,7 +47,14 @@ export function loadSubforum(subforumId){
         payload: subforum
     };
 }
+export function login(loginprops){
+    console.log(loginprops);
 
+    return{
+      type: LOGIN,
+      payload: 'te'
+    };
+}
 export function selectSubforum(subforum) {
     console.log("Subforum was selected", subforum.content);
     return {
@@ -72,7 +82,7 @@ export function loadUser(userId){
 
 
 export function createSubforum(prop) {
-
+    console.log(prop);
     var lastSubforum = 1;
     if(Subforums().length !== 0){
         lastSubforum = Subforums().reduce(function(prev, current) {
@@ -100,4 +110,16 @@ export function addPost(prop) {
         payload: newPost,
         topic: prop.topic
     };
+}
+
+export function addSubforum(prop) {
+    console.log(prop);
+
+    var newSubforum = { id: 0, order: 0, topics: [], content: prop.name };
+
+    return{
+        type: ADD_SUBFORUM,
+        payload: newSubforum
+    }
+
 }

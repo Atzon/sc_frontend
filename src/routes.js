@@ -7,7 +7,8 @@ import SubforumForm from "./components/SubforumForm";
 import Topic from "./components/Topic";
 import User from "./components/User";
 import Login from "./components/login";
-
+import Adminpanel from "./components/admin/adminpanel";
+import Managesubforum from "./components/admin/manageSubforum";
 export default () => (
     <BrowserRouter>
         <Switch>
@@ -19,6 +20,8 @@ export default () => (
             <Route exact path="/home/topic/:topicId" component={Topic}/>
             <Route exact path="/home/user/:userId" component={User}/>
             <Route exact path="/login" component={Login}/>
+            <Route exact path="/admin" component={Adminpanel}/>
+            <Route exact path="/admin/managesubforum" component={Managesubforum}/>
         </Switch>
     </BrowserRouter>
 );

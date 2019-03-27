@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -12,7 +11,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+
 const styles = {
 
     grow: {
@@ -108,8 +108,5 @@ class NavHeader extends React.Component {
     }
 }
 
-NavHeader.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(NavHeader);
