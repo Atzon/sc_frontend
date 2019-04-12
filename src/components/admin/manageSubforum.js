@@ -40,7 +40,7 @@ class Managesubforum extends React.Component {
             items: this.props.subforums,
             visible: false,
             newSubforumName: ''
-        }
+        };
 
         this.handleNewSubforumChange = this.handleNewSubforumChange.bind(this);
     }

@@ -9,6 +9,7 @@ import User from "./components/User";
 import Login from "./components/login";
 import Adminpanel from "./components/admin/adminpanel";
 import Managesubforum from "./components/admin/manageSubforum";
+import Manageuser from "./components/admin/manageUser";
 export default () => (
     <BrowserRouter>
         <Switch>
@@ -22,6 +23,7 @@ export default () => (
             <Route exact path="/login" component={Login}/>
             <Route exact path="/admin" component={Adminpanel}/>
             <Route exact path="/admin/managesubforum" component={Managesubforum}/>
+            <Route exact path="/admin/manageuser" component={Manageuser}/>
         </Switch>
     </BrowserRouter>
 );
